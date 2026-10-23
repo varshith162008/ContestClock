@@ -24,8 +24,41 @@
     </div>
 </header>
 
+
+<nav class="quick-nav" aria-label="Quick navigation">
+    <div class="quick-nav-inner">
+        <a href="#dashboardSection" class="nav-brand">CC</a>
+
+        <button type="button" class="nav-button active"
+                data-target="dashboardSection">
+            <span>⌂</span> Dashboard
+        </button>
+
+        <button type="button" class="nav-button"
+                data-target="contestSection">
+            <span>◷</span> Contests
+        </button>
+
+        <button type="button" class="nav-button"
+                data-target="smartTimetable">
+            <span>▦</span> Smart Timetable
+        </button>
+
+        <button type="button" class="nav-button"
+                data-target="calendarSection">
+            <span>▣</span> Calendar
+        </button>
+
+        <button type="button" class="nav-button"
+                id="navFavoritesButton">
+            <span>☆</span> Favorites
+        </button>
+    </div>
+</nav>
+
+
     <main class="container">
-        <section class="hero">
+        <section class="hero" id="dashboardSection">
             <p class="eyebrow">YOUR COMPETITIVE EDGE</p>
             <h1>Never miss a <span>coding contest.</span></h1>
             <p class="subtitle">
@@ -73,7 +106,7 @@
 </button>
         </section>
 
-        <section class="contest-section">
+        <section class="contest-section" id="contestSection">
             <div class="section-heading">
                 <div>
                     <h2>Upcoming contests</h2>
@@ -103,7 +136,7 @@
         </section>
 
         
-<section class="calendar-section">
+<section class="calendar-section" id="calendarSection">
     <div class="section-heading">
         <div>
             <h2>Contest calendar</h2>

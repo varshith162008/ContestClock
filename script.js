@@ -1258,3 +1258,69 @@ if (themeToggle) {
         applyTheme(isLight ? "dark" : "light");
     });
 }
+
+
+/* =========================================
+   QUICK NAVIGATION BUTTON BEHAVIOR
+   ========================================= */
+
+const quickNavButtons = document.querySelectorAll(
+    ".nav-button[data-target]"
+);
+
+const favoritesNavButton = document.getElementById(
+    "navFavoritesButton"
+);
+
+function navigateToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+
+    if (!section) return;
+
+    // Smart Timetable is available only to signed-in users.
+    if (sectionId === "smartTimetable" && section.hidden) {
+        alert("Please sign in to access your Smart Timetable.");
+        return;
+    }
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    quickNavButtons.forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.target === sectionId
+        );
+    });
+
+    // Reflect the current section in the navigation.
+    if (favoritesNavButton) {
+        favoritesNavButton.classList.remove("active");
+    }
+}
+
+quickNavButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        navigateToSection(button.dataset.target);
+    });
+});
+
+if (favoritesNavButton) {
+    favoritesNavButton.addEventListener("click", () => {
+        // Reuse the existing favorites filter and its cloud sync.
+        const wasShowingFavorites = showFavoritesOnly;
+
+        if (!wasShowingFavorites) {
+            favoritesOnlyButton.click();
+        }
+
+        navigateToSection("contestSection");
+
+        favoritesNavButton.classList.add("active");
+        quickNavButtons.forEach(button => {
+            button.classList.remove("active");
+        });
+    });
+}
