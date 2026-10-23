@@ -1324,3 +1324,50 @@ if (favoritesNavButton) {
         });
     });
 }
+
+
+/* Highlight the navigation item for the section in view */
+const navSections = [
+    { id: "dashboardSection", button: null },
+    { id: "contestSection", button: null },
+    { id: "smartTimetable", button: null },
+    { id: "calendarSection", button: null }
+];
+
+const navButtons = document.querySelectorAll(".nav-button[data-target]");
+
+function setActiveNav(sectionId) {
+    navButtons.forEach(button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.target === sectionId
+        );
+    });
+
+    const favoritesButton = document.getElementById("navFavoritesButton");
+    if (favoritesButton) {
+        favoritesButton.classList.remove("active");
+    }
+}
+
+if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+        const visibleSections = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleSections.length > 0) {
+            setActiveNav(visibleSections[0].target.id);
+        }
+    }, {
+        rootMargin: "-100px 0px -55% 0px",
+        threshold: [0, 0.1, 0.25, 0.5]
+    });
+
+    navSections.forEach(sectionInfo => {
+        const section = document.getElementById(sectionInfo.id);
+        if (section) {
+            sectionObserver.observe(section);
+        }
+    });
+}
