@@ -1,0 +1,37 @@
+
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/
+
+# Local test and temporary files
+*.tmp
+*.bak
+
+# Local reminder and subscription data
+reminder-settings.json
+subscriptions.json
+
+# Local reminder history
+sent-reminders.json

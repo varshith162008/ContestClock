@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContestClock | Coding Contest Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    
+<header class="topbar">
+    <a href="#" class="logo">Contest<span>Clock</span></a>
+
+    <div class="header-actions">
+        <span class="status" id="connectionStatus">
+            Preparing contest tracker...
+        </span>
+
+        <button id="themeToggle" type="button">
+            ☀️ Light Mode
+        </button>
+    </div>
+</header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">YOUR COMPETITIVE EDGE</p>
+            <h1>Never miss a <span>coding contest.</span></h1>
+            <p class="subtitle">
+                Track upcoming contests from Codeforces and CodeChef
+                in one place.
+            </p>
+        </section>
+
+        <section class="stats">
+            <article class="stat-card">
+                <p>Upcoming contests</p>
+                <h2 id="totalContests">—</h2>
+            </article>
+            <article class="stat-card">
+                <p>Codeforces</p>
+                <h2 id="codeforcesCount">—</h2>
+            </article>
+            <article class="stat-card">
+                <p>CodeChef</p>
+                <h2 id="codechefCount">—</h2>
+            </article>
+        </section>
+
+        <section class="toolbar">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search contests..."
+                aria-label="Search contests"
+            >
+
+            <select id="platformFilter" aria-label="Filter by platform">
+                <option value="all">All platforms</option>
+                <option value="Codeforces">Codeforces</option>
+                <option value="CodeChef">CodeChef</option>
+            </select>
+
+            <select id="sortFilter" aria-label="Sort contests">
+                <option value="soonest">Soonest first</option>
+                <option value="latest">Latest first</option>
+                <option value="name">Contest name</option>
+            </select>
+            <button id="favoritesOnlyButton" type="button">
+    ☆ Show Favorites Only
+</button>
+        </section>
+
+        <section class="contest-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Upcoming contests</h2>
+                    <p>Real contest data will appear here when available.</p>
+                </div>
+                <button id="refreshButton" type="button">↻ Refresh</button>
+               
+<button id="enableNotifications" type="button">
+    🔔 Enable Notifications
+</button>
+
+<label for="reminderMinutes">Remind me:</label>
+<select id="reminderMinutes" aria-label="Reminder time">
+    <option value="5">5 minutes before</option>
+    <option value="10">10 minutes before</option>
+    <option value="15" selected>15 minutes before</option>
+    <option value="30">30 minutes before</option>
+</select>
+
+            </div>
+
+            <div id="contestList" class="contest-list" aria-live="polite">
+                <div class="message">
+                    Your contest dashboard is loading...
+                </div>
+            </div>
+        </section>
+
+        
+<section class="calendar-section">
+    <div class="section-heading">
+        <div>
+            <h2>Contest calendar</h2>
+            <p>Choose a date to see its scheduled contests.</p>
+        </div>
+        <div class="calendar-controls">
+            <button id="previousMonth" type="button" aria-label="Previous month">←</button>
+            <strong id="calendarMonthLabel"></strong>
+            <button id="nextMonth" type="button" aria-label="Next month">→</button>
+            <button id="todayButton" type="button">Today</button>
+        </div>
+    </div>
+
+    <div id="calendarGrid" class="calendar-grid"></div>
+
+    <div class="selected-date-panel">
+        <h3 id="selectedDateLabel">Selected date</h3>
+        <div id="selectedDateContests"></div>
+    </div>
+</section>
+
+
+        <footer>
+            <p>ContestClock · Built for competitive programmers.</p>
+        </footer>
+    </main>
+
+    
+<section class="timetable-section" id="smartTimetable">
+  <div class="timetable-heading">
+    <div>
+      <p class="eyebrow">STUDY SMARTER</p>
+      <h2>Smart Timetable</h2>
+      <p class="muted">
+        Add your weekly classes and find contest clashes automatically.
+      </p>
+    </div>
+  </div>
+
+  <form id="classForm" class="class-form">
+    <label>
+      Subject
+      <input id="classSubject" type="text"
+             placeholder="e.g. Data Structures" required>
+    </label>
+
+    <label>
+      Day
+      <select id="classDay" required>
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+        <option value="6">Saturday</option>
+        <option value="0">Sunday</option>
+      </select>
+    </label>
+
+    <label>
+      Start time
+      <input id="classStart" type="time" required>
+    </label>
+
+    <label>
+      End time
+      <input id="classEnd" type="time" required>
+    </label>
+
+    <button type="submit" class="primary-link">
+      + Add class
+    </button>
+  </form>
+
+  <h3>Your weekly classes</h3>
+  <div id="weeklyClasses" class="weekly-classes"></div>
+
+  <div class="clash-heading">
+    <h3>Upcoming clashes</h3>
+    <span class="muted">Next 30 days</span>
+  </div>
+  <div id="timetableClashes" class="timetable-clashes"></div>
+</section>
+
+
+    <script type="module" src="script.js"></script>
+<script type="module" src="auth.js"></script>
+</body>
+</html>
