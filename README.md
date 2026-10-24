@@ -1,99 +1,120 @@
-# ContestClock
+# ⏰ ContestClock
 
-**A contest reminder website for student programmers.**
+**Never miss a competitive programming contest.**
 
-ContestClock helps students discover upcoming programming contests, track start times, organize contests in a calendar, and identify clashes with their weekly college timetable.
+ContestClock is a web application that brings upcoming programming contests from Codeforces and CodeChef into one place. It helps students track contest schedules, save interesting contests, receive reminders, and plan their practice around their college timetable.
 
-## Features
+🌐 **Live Demo:** https://contestclock.onrender.com  
+💻 **GitHub Repository:** https://github.com/varshith162008/ContestClock
 
-- Live upcoming contests from Codeforces and CodeChef
-- Search and platform filtering
-- Contest countdown timers
-- Favorites and saved preferences
-- Google Calendar links for contests
-- Browser notification and reminder features
-- Monthly contest calendar
-- Smart Timetable with upcoming contest-clash detection
-- Supabase authentication and cloud synchronization
-- Dark and light themes
+## 📸 Screenshots
 
-## Tech Stack
+<!-- Save your actual screenshots in docs/screenshots before committing. -->
 
-- HTML, CSS and JavaScript
-- Node.js backend
-- Supabase Authentication and PostgreSQL
-- Codeforces API
-- CodeChef contest data through the project's backend
-- Browser Notifications and Service Workers
-- Google Calendar event links
+### Dashboard
+![ContestClock Dashboard](docs/screenshots/dashboard.png)
 
-## Requirements
+### Smart Timetable
+![ContestClock Smart Timetable](docs/screenshots/smart-timetable.png)
 
-- Node.js and npm
-- A modern web browser
-- A configured Supabase project
-- The environment variables required by the backend
+### Calendar
+![ContestClock Calendar](docs/screenshots/calendar.png)
 
-## Setup
+### Favorites
+![ContestClock Favorites](docs/screenshots/favorites.png)
 
-1. Clone or download this repository.
-2. Open a terminal in the project folder.
-3. Install the project dependencies:
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- **Upcoming contests:** View upcoming Codeforces and CodeChef contests in one dashboard.
+- **Countdowns:** Track how soon a contest begins.
+- **Search and filters:** Find contests using search, platform, and available sorting or filtering options.
+- **Push notifications:** Subscribe to browser push notifications and test delivery.
+- **Configurable reminders:** Select a supported reminder interval.
+- **Favorites:** Save contests for quick access.
+- **Smart Timetable:** Organize your schedule and identify potential contest clashes.
+- **Calendar view:** Browse contest dates in a monthly calendar.
+- **Google Calendar:** Open contest events through Google Calendar links.
+- **Authentication:** Register and log in to access the application's account features.
+- **Dark interface:** Use a dark-themed dashboard designed for comfortable browsing.
 
-4. Create a `.env` file in the project root and configure the environment variables required by `server.js`. Use the variable names expected by the project; do not commit `.env` or share secret values.
-5. Start the backend:
+## 🛠️ Tech Stack
 
-   ```bash
-   node server.js
-   ```
+- HTML, CSS, JavaScript
+- Node.js
+- Express.js
+- Web Push API and VAPID
+- Supabase for the configured authentication and data features
+- Codeforces and CodeChef contest APIs
+- Render for deployment
 
-6. Open the local URL printed by the server in your browser. The current development setup uses port `3000` when available.
+## 🚀 Run Locally
 
-Keep the terminal running while using the application. Do not open `index.html` directly as a `file://` URL because the application uses backend API routes and other browser features that require a local server.
+### Prerequisites
 
-## Supabase Setup
+Install a supported version of Node.js and npm.
 
-Create and configure the Supabase project required by the application.
+### 1. Clone the repository
 
-Configure the database tables and Row Level Security (RLS) policies required for user-specific data. Use the database setup instructions and SQL associated with this project.
+```bash
+git clone https://github.com/varshith162008/ContestClock.git
+cd ContestClock
+```
 
-Use only frontend-safe Supabase publishable credentials in browser code. Keep server secrets in environment variables, and never commit secret credentials to GitHub.
+### 2. Install dependencies
 
-## Testing Status
+```bash
+npm install
+```
 
-The following features have been manually tested during development:
+### 3. Configure environment variables
 
-- Codeforces and CodeChef contest listings
-- Search and existing platform and duration filters
-- Contest countdowns and Google Calendar event links
-- Favorites and persistence after refresh
-- Smart Timetable, clash detection, and persistence after refresh
-- Registration, login, logout, and per-user data isolation
-- Backend startup and reminder-settings API
+Create a local `.env` file using the variable names required by the project. Configure the required VAPID keys and any Supabase credentials used by your setup.
 
-These are manual development checks, not a complete automated test suite or independent security audit.
+**Never commit `.env` or expose secret keys in screenshots, logs, or public documentation.**
 
-## Known Limitations
+### 4. Start the server
 
-- Browser notification behavior depends on browser permissions and secure-context requirements.
-- Notifications on the local HTTP development address have not been verified successfully on Android Chrome.
-- Contest data and API availability depend on the relevant services.
+```bash
+node server.js
+```
 
-## Project Status
+Open `http://localhost:3000` in your browser, unless your local configuration uses a different port.
 
-ContestClock is a student project under development. Its core features have been manually tested, and further improvements may be made as development continues.
+## 🔔 Notifications
 
-## Future Improvements
+ContestClock uses browser push subscriptions and a Node.js backend to send push notifications. Notification delivery depends on browser permission, subscription validity, backend availability, and deployment behavior.
 
-- Support for additional programming contest platforms
-- Improved reminder scheduling
-- Additional timetable and contest filters
-- Further automated testing
+The live test endpoint is intended for testing the configured notification system; it is not a substitute for verifying scheduled reminder delivery.
 
-## License
+## 🧪 Testing
 
-No license has been selected yet. Unless a license is added, the project remains subject to the default copyright rules. Do not assume others have permission to reuse or redistribute it.
+The following features have been manually tested on the deployed website:
+
+- Website and contest data loading
+- Login and registration
+- Favorites and timetable persistence after refresh
+- Search and contest filters
+- Reminder interval updates
+- Browser subscription and test push notification delivery
+
+Automatic reminder reliability across server sleep, restarts, and deployment filesystem changes still requires separate verification.
+
+## ⚠️ Deployment Notes
+
+The current backend uses local JSON files for some settings, subscriptions, and sent-reminder records. On hosting platforms with ephemeral filesystems, these records may not persist through restarts or redeployments. Free hosting may also suspend an idle service.
+
+Treat scheduled reminder delivery as a feature that needs continued reliability testing.
+
+## 🎯 Project Goal
+
+ContestClock was created to make competitive programming contest tracking easier for students by combining contest discovery, reminders, favorites, calendar access, and timetable planning in one application.
+
+## 👨‍💻 Author
+
+**Varshith Sai Badam**
+
+Built as a personal project to practise web development, API integration, authentication, push notifications, and deployment.
+
+---
+
+If you find the project useful, consider giving the repository a ⭐ on GitHub.
