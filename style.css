@@ -244,23 +244,29 @@ footer {
 }
 
 
+
+/* =========================================
+   CONTEST CARDS — MODERN UI
+   ========================================= */
+
 .contest-card {
-    padding: 22px;
+    position: relative;
+    padding: 24px;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    transition: transform 0.2s, border-color 0.2s;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .contest-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     border-color: var(--accent);
-}
-
-.contest-card h3 {
-    margin: 18px 0;
-    font-size: 19px;
-    overflow-wrap: anywhere;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
 .contest-card-top,
@@ -277,68 +283,178 @@ footer {
 }
 
 .platform-badge {
-    padding: 5px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
     border-radius: 999px;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: 0.3px;
 }
 
 .cf-badge {
     color: #a5c8ff;
-    background: #1c3150;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.3);
 }
 
 .cc-badge {
     color: #ffd6a0;
-    background: #49331e;
+    background: rgba(245, 158, 11, 0.13);
+    border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
-.contest-duration,
-.contest-date,
-.muted {
+.contest-duration {
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.contest-card h3 {
+    margin: 20px 0 12px;
+    color: var(--text);
+    font-size: clamp(18px, 2vw, 21px);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.contest-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
     color: var(--muted);
     font-size: 14px;
 }
 
+.contest-date span {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* Countdown panel */
+
 .countdown {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 13px;
-    margin: 16px 0;
-    background: #0b1426;
+    gap: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    background: var(--background);
     border: 1px solid var(--border);
-    border-radius: 9px;
+    border-radius: 12px;
 }
 
 .countdown span {
     color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .countdown strong {
     color: var(--green);
+    font-size: 15px;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
 }
 
-.contest-actions a {
-    display: inline-block;
-    padding: 9px 12px;
-    border-radius: 8px;
+/* Contest actions */
+
+.contest-actions {
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.contest-actions a,
+.contest-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 10px 13px;
+    border-radius: 9px;
+    font-family: inherit;
     font-size: 13px;
+    font-weight: 700;
+    text-align: center;
     text-decoration: none;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.contest-actions a:hover,
+.contest-actions button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
 }
 
 .primary-link {
     color: #0b1020;
     background: var(--accent);
-    font-weight: bold;
+    border: 1px solid transparent;
+    font-weight: 800;
 }
 
 .secondary-link {
     color: var(--text);
+    background: transparent;
     border: 1px solid var(--border);
 }
+
+.contest-actions .favorite-button {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.contest-actions .favorite-button:hover {
+    border-color: var(--accent);
+}
+
+.contest-actions a:focus-visible,
+.contest-actions button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Responsive contest cards */
+
+@media (max-width: 650px) {
+    .contest-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .contest-card h3 {
+        margin: 16px 0 12px;
+    }
+
+    .countdown {
+        padding: 13px;
+        gap: 8px;
+    }
+
+    .countdown strong {
+        font-size: 13px;
+    }
+
+    .contest-actions a,
+    .contest-actions button {
+        flex: 1 1 auto;
+    }
+}
+
 
 .calendar-section {
     margin: 36px 0;
@@ -787,4 +903,606 @@ html {
     margin: 0;
     color: var(--muted);
     line-height: 1.6;
+}
+
+
+/* =========================================
+   CONTESTCLOCK — DASHBOARD POLISH
+   ========================================= */
+
+/* More breathing room around the dashboard */
+#dashboardSection {
+    scroll-margin-top: 100px;
+}
+
+/* Make the statistics row feel cohesive */
+.stats {
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.stat-card {
+    min-width: 0;
+    padding: 26px;
+    background:
+        linear-gradient(
+            145deg,
+            var(--premium-glow),
+            transparent 65%
+        ),
+        var(--surface);
+    border-color: var(--border);
+    border-radius: 20px;
+}
+
+/* Clearer label-to-number hierarchy */
+.stat-card p {
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+}
+
+.stat-card h2 {
+    margin-top: 14px;
+    letter-spacing: -1.2px;
+}
+
+/* Subtle lift without excessive movement */
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Keep the dashboard comfortable on smaller screens */
+@media (max-width: 650px) {
+    .stats {
+        gap: 14px;
+        margin-top: 22px;
+    }
+
+    .stat-card {
+        padding: 21px;
+        border-radius: 16px;
+    }
+
+    .stat-card h2 {
+        margin-top: 8px;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — PREMIUM DESIGN FOUNDATION
+   Add at the very bottom of style.css
+   ========================================= */
+
+:root {
+    --premium-glow: rgba(99, 102, 241, 0.12);
+    --premium-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    --premium-shadow-hover: 0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+/* Smooth page-level interactions */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Refined dashboard cards */
+.stat-card {
+    border-radius: 18px;
+    box-shadow: var(--premium-shadow);
+    backdrop-filter: blur(12px);
+}
+
+.stat-card:hover {
+    box-shadow: var(--premium-shadow-hover);
+}
+
+/* Refined contest cards */
+.contest-card {
+    border-radius: 18px;
+    box-shadow: var(--premium-shadow);
+    backdrop-filter: blur(10px);
+}
+
+.contest-card:hover {
+    box-shadow: var(--premium-shadow-hover);
+}
+
+/* Cleaner, more consistent form controls */
+input,
+select,
+textarea {
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--premium-glow);
+}
+
+/* Consistent keyboard accessibility */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Reduce motion when requested by the user */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — PREMIUM QUICK NAVIGATION
+   ========================================= */
+
+.quick-nav {
+    position: sticky;
+    top: 10px;
+    z-index: 1000;
+    width: calc(100% - 32px);
+    max-width: 1440px;
+    margin: 10px auto 28px;
+    padding: 8px;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.quick-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.nav-brand {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, var(--accent), #818cf8);
+    color: #0b1020;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px var(--premium-glow);
+    transition: transform 0.2s ease;
+}
+
+.nav-brand:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
+.nav-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-button span {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.nav-button:hover {
+    color: var(--text);
+    background: var(--premium-glow);
+    border-color: var(--border);
+}
+
+.nav-button.active {
+    color: var(--text);
+    background: var(--premium-glow);
+    border-color: var(--border);
+    box-shadow: inset 0 0 0 1px rgba(129, 140, 248, 0.08);
+}
+
+.nav-button:active {
+    transform: scale(0.97);
+}
+
+.nav-brand:focus-visible,
+.nav-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Horizontal scrolling keeps every nav item accessible */
+@media (max-width: 850px) {
+    .quick-nav {
+        width: calc(100% - 20px);
+        margin: 8px auto 22px;
+        overflow: hidden;
+    }
+
+    .quick-nav-inner {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+
+    .quick-nav-inner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-button {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-nav {
+        top: 5px;
+        padding: 6px;
+        border-radius: 15px;
+    }
+
+    .nav-brand {
+        width: 38px;
+        height: 38px;
+        margin-right: 3px;
+    }
+
+    .nav-button {
+        min-height: 38px;
+        gap: 6px;
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — PREMIUM HERO REFINEMENT
+   ========================================= */
+
+/* Reduce excess space above the hero */
+#dashboardSection {
+    padding-top: 0;
+    scroll-margin-top: 100px;
+}
+
+/* Refine the existing hero content */
+#dashboardSection .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px 42px;
+}
+
+/* Stronger heading hierarchy */
+#dashboardSection .hero h1 {
+    max-width: 850px;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+    text-wrap: balance;
+}
+
+/* Improve subtitle readability */
+#dashboardSection .hero p {
+    max-width: 680px;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.8;
+}
+
+/* Keep dashboard statistics closer to the hero */
+#dashboardSection .stats {
+    max-width: 1200px;
+    margin: 24px auto 36px;
+}
+
+/* Tablet and mobile */
+@media (max-width: 650px) {
+    #dashboardSection .hero {
+        padding: 42px 18px 28px;
+    }
+
+    #dashboardSection .hero h1 {
+        font-size: clamp(34px, 8vw, 46px);
+        letter-spacing: -1.2px;
+    }
+
+    #dashboardSection .hero p {
+        line-height: 1.7;
+    }
+
+    #dashboardSection .stats {
+        margin-top: 18px;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — SUBTLE HERO GLOW
+   ========================================= */
+
+#dashboardSection .hero {
+    position: relative;
+    isolation: isolate;
+}
+
+#dashboardSection .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 12px;
+    left: 0;
+    width: min(580px, 90%);
+    height: 300px;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at 35% 35%,
+        rgba(99, 102, 241, 0.13),
+        rgba(59, 130, 246, 0.05) 45%,
+        transparent 72%
+    );
+    filter: blur(18px);
+}
+
+#dashboardSection .hero h1 {
+    position: relative;
+    text-shadow: 0 0 36px rgba(99, 102, 241, 0.08);
+}
+
+#dashboardSection .stats {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================
+   CONTESTCLOCK — PREMIUM FILTER CONTROLS
+   ========================================= */
+
+#contestSection input,
+#contestSection select {
+    min-height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#contestSection input {
+    padding: 12px 16px;
+}
+
+#contestSection select {
+    padding: 12px 36px 12px 14px;
+    cursor: pointer;
+}
+
+#contestSection input::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+}
+
+#contestSection input:hover,
+#contestSection select:hover {
+    border-color: var(--accent);
+}
+
+#contestSection input:focus,
+#contestSection select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--premium-glow);
+}
+
+/* Mobile-friendly filter sizing */
+@media (max-width: 650px) {
+    #contestSection input,
+    #contestSection select {
+        width: 100%;
+        max-width: 100%;
+        min-height: 46px;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — PREMIUM CONTEST CARDS
+   ========================================= */
+
+#contestSection .contest-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(99, 102, 241, 0.07),
+            transparent 48%
+        ),
+        var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+#contestSection .contest-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+/* Contest title */
+#contestSection .contest-card h3 {
+    line-height: 1.45;
+    letter-spacing: -0.25px;
+}
+
+/* Countdown panel */
+#contestSection .countdown {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+#contestSection .countdown strong {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+/* Consistent action buttons */
+#contestSection .contest-actions a,
+#contestSection .contest-actions button {
+    min-height: 42px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        filter 0.2s ease;
+}
+
+#contestSection .contest-actions a:hover,
+#contestSection .contest-actions button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+#contestSection .contest-actions .favorite-button {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+#contestSection .contest-actions .favorite-button:hover {
+    border-color: var(--accent);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    #contestSection .contest-card,
+    #contestSection .contest-actions a,
+    #contestSection .contest-actions button {
+        transition: none;
+    }
+
+    #contestSection .contest-card:hover,
+    #contestSection .contest-actions a:hover,
+    #contestSection .contest-actions button:hover {
+        transform: none;
+    }
+}
+
+
+/* =========================================
+   CONTESTCLOCK — TIMETABLE & CALENDAR
+   ========================================= */
+
+/* Section spacing */
+#smartTimetable,
+#calendarSection {
+    scroll-margin-top: 100px;
+}
+
+/* Consistent section headings */
+#smartTimetable h2,
+#calendarSection h2 {
+    letter-spacing: -0.5px;
+}
+
+/* Timetable and calendar surfaces */
+#smartTimetable .class-card,
+#smartTimetable .timetable-card,
+#calendarSection .calendar-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Form controls in both sections */
+#smartTimetable input,
+#smartTimetable select,
+#smartTimetable textarea,
+#calendarSection input,
+#calendarSection select {
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+/* Buttons */
+#smartTimetable button,
+#calendarSection button {
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+#smartTimetable button:hover,
+#calendarSection button:hover {
+    filter: brightness(1.07);
+}
+
+/* Mobile spacing */
+@media (max-width: 650px) {
+    #smartTimetable,
+    #calendarSection {
+        margin-top: 24px;
+    }
 }
